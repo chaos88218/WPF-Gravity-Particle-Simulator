@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="PSControl.FieldDLG_cell"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignHeight="100" d:DesignWidth="400" 
+             MinWidth="400" MinHeight="100" MaxWidth="400" MaxHeight="100">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="number_label" Content ="" Background="#7B7B7B" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!--nine grid-->
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="gravity&#10;magnitude" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="g_text"
+                         Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="0, 0, 0, 1" Margin="0,10,0,10" 
+                         PreviewTextInput="NumberValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="1">
+                <CheckBox x:Name="push_checkbox"
+                         Content = "Push Force" Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1, 1, 1, 1" Margin="10,10,10,10" 
+                          Checked="push_checkbox_Checked" Unchecked="push_checkbox_Unchecked"/>
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="2">
+                <CheckBox x:Name="flat_checkbox"
+                         Content = "Gravity" Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1, 1, 1, 1" Margin="10,10,10,10" 
+                          Checked="flat_checkbox_Checked"  Unchecked="flat_checkbox_Unchecked"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="X :" x:Name="x_label" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="posiX_text"
+                         Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="0, 0, 0, 1" Margin="0,10,0,10" 
+                         PreviewTextInput="NumberValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Y :" x:Name="y_label" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="posiY_text"
+                         Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="0, 0, 0, 1" Margin="0,10,0,10" 
+                         PreviewTextInput="NumberValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Z :" x:Name="z_label" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="posiZ_text"
+                         Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="0, 0, 0, 1" Margin="0,10,0,10" 
+                         PreviewTextInput="NumberValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

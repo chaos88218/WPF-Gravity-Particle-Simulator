@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="PSControl.Field_info"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="300" BorderBrush="Black" BorderThickness="1, 1, 1, 1"
+             MinWidth="300" MinHeight="50" MaxWidth="300" MaxHeight="50">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="number_label" Content ="" Background="#7B7B7B" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="G mag." VerticalContentAlignment="Center" FontSize="10"/>
+                <Label x:Name="g_mag_label"
+                         Grid.Column="1" VerticalContentAlignment="Center" FontSize="10" BorderBrush="Black" BorderThickness="0, 0, 0, 1" />
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="type:" VerticalContentAlignment="Center" FontSize="10"/>
+                <Label x:Name="type_label"
+                         Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="0, 0, 0, 1"  FontSize="10" />
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="x_or_ax_label" Content="X :" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  FontSize="10"/>
+                <Label x:Name="x_label"
+                         Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="0, 0, 0, 1"  FontSize="10" />
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="y_or_ay_label" Content="Y :" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  FontSize="10"/>
+                <Label x:Name="y_label"
+                         Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="0, 0, 0, 1"  FontSize="10" />
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="z_or_az_label" Content="Z :" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  FontSize="10"/>
+                <Label x:Name="z_label"
+                         Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="0, 0, 0, 1"  FontSize="10" />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

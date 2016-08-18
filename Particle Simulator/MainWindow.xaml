@@ -1,0 +1,129 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:h="http://helix-toolkit.org/wpf" x:Class="WPF_ParticleSimulator.MainWindow"
+        Title="Particle Simulator" Height ="960
+    " Width="1280" Icon="12WbE96110-49442.ico">
+    <Grid HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <!--function panel-->
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="0" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="15" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Show" Click="Show_button" x:Name="show_button" Width="48" Background="White"/>
+                        <Button Content="Run" Click="Run_button" x:Name="run_button" Width="48" Background="White"/>
+                        <Button Content="Reset" Click="Reset_button" x:Name="reset_button" Width="48" Background="White"/>
+                    </StackPanel>
+                    <Label Grid.Row="1" Padding="0" HorizontalAlignment="Center" Content="Animation" />
+                </Grid>
+                <Rectangle VerticalAlignment="Stretch" Width="1" Margin="1,5" Stroke="#FFC6C6C6" />
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="15" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Scene" Click="New_button" x:Name="new_button" Width="48" Background="White"/>
+                    </StackPanel>
+                    <Label Grid.Row="1" Padding="0" HorizontalAlignment="Center" Content="Create" />
+                </Grid>
+                <Rectangle VerticalAlignment="Stretch" Width="1" Margin="1,5" Stroke="#FFC6C6C6" />
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="15" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Field" Click="Field_button" x:Name="field_button" Width="48" Background="White"/>
+                        <Button Content="Source" Click="Source_button" x:Name="source_button" Width="48" Background="White"/>
+                    </StackPanel>
+                    <Label Grid.Row="1" Padding="0" HorizontalAlignment="Center" Content="Setting" />
+                </Grid>
+                <Rectangle VerticalAlignment="Stretch" Width="1" Margin="1,5" Stroke="#FFC6C6C6" />
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="15" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Karma" Click ="karma_ex_Click"  x:Name="karma_ex" Width="48" Background ="BlanchedAlmond"/>
+                        <Button Content="Orbit" Click="orbit_ex_Click"  x:Name="orbit_ex" Width="48" Background="BlanchedAlmond"/>
+                        <Button Content="Spring" Click="sping_ex_Click"  x:Name="sping_ex" Width="48" Background="BlanchedAlmond"/>
+                    </StackPanel>
+                    <Label Grid.Row="1" Padding="0" HorizontalAlignment="Center" Content="Examples"/>
+                </Grid>
+                <Rectangle VerticalAlignment="Stretch" Width="1" Margin="1,5" Stroke="#FFC6C6C6" />
+            </StackPanel>
+        </Border>
+
+        <!--drawing canvas-->
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1" Grid.Column="1">
+            <h:HelixViewport3D x:Name="myHelixViewport3D" ZoomExtentsWhenLoaded="True" Background="Black" Margin="1,0,-1,0">
+                <h:HelixViewport3D.RotateGesture>
+                    <MouseGesture MouseAction="RightClick" />
+                </h:HelixViewport3D.RotateGesture>
+                <h:HelixViewport3D.PanGesture>
+                    <MouseGesture MouseAction="LeftClick" />
+                </h:HelixViewport3D.PanGesture>
+                <h:HelixViewport3D.ZoomGesture>
+                    <MouseGesture MouseAction="MiddleClick" />
+                </h:HelixViewport3D.ZoomGesture>
+            </h:HelixViewport3D>
+        </Border>
+
+        <!--Object panel-->
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1" Grid.ColumnSpan="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <Label Content="Source" Grid.Row="0"></Label>
+                <ListBox Grid.Row="1"  x:Name="source_info_stack">
+                </ListBox>
+
+                <Label Content="Field" Grid.Row="2"></Label>
+                <ListBox Grid.Row="3" x:Name="field_info_stack">    
+                </ListBox>
+
+                <Label Content="Particles" Grid.Row="4"></Label>
+                <ListBox Grid.Row="5" x:Name="particles_info_stack">
+                </ListBox>
+            </Grid>
+        </Border>
+
+        <!--Status Bar-->
+        <Border BorderBrush="Black" Background="#FF007ACC" BorderThickness="1" Grid.Row="2" Grid.Column="1">
+            <TextBlock x:Name="Status_bar"/>
+        </Border>
+
+        <!--Progress Bar-->
+        <Border BorderBrush="Black" Background="#FF007ACC" BorderThickness="1" Grid.Row="2" Grid.Column="0">
+            <ProgressBar/>
+        </Border>
+
+    </Grid>
+
+</Window>

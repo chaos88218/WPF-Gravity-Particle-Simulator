@@ -1,0 +1,140 @@
+﻿<UserControl x:Class="PSControl.SourceDLG_cell"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignHeight="120" d:DesignWidth="500" 
+             MinWidth="500" MinHeight="120" MaxWidth="500" MaxHeight="120">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label x:Name="number_label" Content ="" Background="#8A2BE2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <ComboBox Grid.Row="1" x:Name="type_combo_box" Margin="5, 5, 5, 5" VerticalContentAlignment="Center" Background="#8A2BE2">
+                <ComboBoxItem IsSelected="True">Cone</ComboBoxItem>
+                <ComboBoxItem>Line</ComboBoxItem>
+                <ComboBoxItem>Para</ComboBoxItem>
+            </ComboBox>
+
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <!--nine grid-->
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="particle&#10;numbers" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="numbers_text"
+                         Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="0, 0, 0, 1" Margin="0,5,0,5" 
+                         PreviewTextInput="intValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown"/>                
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="particles&#10;lifetime" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="life_text"
+                         Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="0, 0, 0, 1" Margin="0,5,0,5" 
+                         PreviewTextInput="intValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="velovity&#10;scale" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="scale_text"
+                         Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="0, 0, 0, 1" Margin="0,5,0,5" 
+                         PreviewTextInput="NumberValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="X :" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="posiX_text"
+                         Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="0, 0, 0, 1" Margin="0,5,0,5" 
+                         PreviewTextInput="NumberValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Y :" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="posiY_text"
+                         Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="0, 0, 0, 1" Margin="0,5,0,5" 
+                         PreviewTextInput="NumberValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+            </Grid>
+            
+            <Grid Grid.Row="1" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Z :" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="posiZ_text"
+                         Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="0, 0, 0, 1" Margin="0,5,0,5" 
+                         PreviewTextInput="NumberValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Vx :" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="veloX_text"
+                         Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="0, 0, 0, 1" Margin="0,5,0,5" 
+                         PreviewTextInput="NumberValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Vy :" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="veloY_text"
+                         Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="0, 0, 0, 1"  Margin="0,5,0,5" 
+                         PreviewTextInput="NumberValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Vz :" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="veloZ_text"
+                         Grid.Column="1" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="0, 0, 0, 1" Margin="0,5,0,5" 
+                         PreviewTextInput="NumberValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
