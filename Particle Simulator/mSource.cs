@@ -24,6 +24,7 @@ namespace WPF_ParticleSimulator
             for (int i = 0; i < this.p_num; i++)
             {
                 this.particles[i] = new Particle();
+                this.particles[i].setObjectPosition(this.getObjectPosition());
             }
             this.SOURCE_TYPE = 0;
             this.velocity_scale = 1;
@@ -38,7 +39,7 @@ namespace WPF_ParticleSimulator
         public mSource()
             : base()
         {
-            initialize_Source(10, 500);
+            initialize_Source(100, 100);
         }
 
         public mSource(int parn, int in_life)
@@ -74,6 +75,7 @@ namespace WPF_ParticleSimulator
             for (int i = 0; i < this.p_num; i++)
             {
                 this.particles[i] = new Particle();
+                this.particles[i].setObjectPosition(this.getObjectPosition());
             }
         }
 
@@ -107,6 +109,7 @@ namespace WPF_ParticleSimulator
         {
             this.particles[n].set_Acceleration(inAcce);
         }
+
 
         //****//
         //get
@@ -186,9 +189,9 @@ namespace WPF_ParticleSimulator
                     if (SOURCE_TYPE == 2)   //para
                     {
                         float[] tempP = this.getObjectPosition();
-                        float r0 = rand.Next(0, 32767) / 32767f * 20f - 10f;
-                        float r1 = rand.Next(0, 32767) / 32767f * 20f - 10f;
-                        float r2 = rand.Next(0, 32767) / 32767f * 20f - 10f;
+                        float r0 = rand.Next(0, 32767) / 32767f * 16f - 8f;
+                        float r1 = rand.Next(0, 32767) / 32767f * 16f - 8f;
+                        float r2 = rand.Next(0, 32767) / 32767f * 16f - 8f;
                         this.particles[i].setObjectPosition(new float[]{tempP[0] + r0, tempP[1] + r1, tempP[2] + r2});
                         this.particles[i].setObjectVelocity(new float[] { tempV[0], tempV[1], tempV[2] });
                         this.particles[i].set_launched(true);

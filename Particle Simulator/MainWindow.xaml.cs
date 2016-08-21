@@ -28,6 +28,7 @@ namespace WPF_ParticleSimulator
     {
         //timer
         DispatcherTimer timer;
+        public static float d_timer = 0.02f;
         bool timer_up = false;
         int sec = 0;
 
@@ -184,7 +185,8 @@ namespace WPF_ParticleSimulator
             if (!timer_up)
             {
                 timer = new DispatcherTimer(DispatcherPriority.Render);
-                timer.Interval = new TimeSpan(0, 0, 0, 0, 50);
+                int temp  = (int)(1.0/d_timer);
+                timer.Interval = new TimeSpan(0, 0, 0, 0, temp);
                 timer.Tick += new EventHandler(timer_tick);
                 timer.Start();
                 this.particles_info_stack.Items.Clear();
@@ -424,11 +426,11 @@ namespace WPF_ParticleSimulator
             myHelixViewport3D.Children.Clear();
             set_scene = true;
 
-            karma.sources[0].set_particle_numbers(1000);
-            karma.sources[0].set_particles_life(1000);
-            karma.sources[0].set_Source_type(0);
+            karma.sources[0].set_particle_numbers(500);
+            karma.sources[0].set_particles_life(500);
+            karma.sources[0].set_Source_type(1);
             karma.sources[0].setObjectPosition(new float[] { 50, 0, 0 });
-            karma.sources[0].set_Velo_scale(3f);
+            karma.sources[0].set_Velo_scale((float)Math.Sqrt(10));
             karma.sources[0].set_Velo_vec(new float[] { 0, 1, 0 });
             set_source = true;
             set_info_stack_s();
@@ -455,28 +457,26 @@ namespace WPF_ParticleSimulator
             myHelixViewport3D.Children.Clear();
             set_scene = true;
 
-            karma.sources[0].set_particle_numbers(500);
-            karma.sources[0].set_particles_life(500);
+            karma.sources[0] = new mSource(500, 500, new float[] { 0, 0, 50 });
             karma.sources[0].set_Source_type(2);
-            karma.sources[0].setObjectPosition(new float[] { 0, 0, 50 });
             karma.sources[0].set_Velo_scale(2f);
             karma.sources[0].set_Velo_vec(new float[] { 0, 0, 1 });
             set_source = true;
             set_info_stack_s();
 
-            karma.field[0].setObjectPosition(new float[] { -50, 0, 0 });
+            karma.field[0].setObjectPosition(new float[] { -70, 0, 0 });
             karma.field[0].set_push_or_not(false);
             karma.field[0].set_G_para(200);
 
-            karma.field[1].setObjectPosition(new float[] { 50, 0, 0 });
+            karma.field[1].setObjectPosition(new float[] { 70, 0, 0 });
             karma.field[1].set_push_or_not(false);
             karma.field[1].set_G_para(200);
 
-            karma.field[2].setObjectPosition(new float[] { 0, 50, 0 });
+            karma.field[2].setObjectPosition(new float[] { 0, 70, 0 });
             karma.field[2].set_push_or_not(false);
             karma.field[2].set_G_para(200);
 
-            karma.field[3].setObjectPosition(new float[] { 0, -50, 0 });
+            karma.field[3].setObjectPosition(new float[] { 0, -70, 0 });
             karma.field[3].set_push_or_not(false);
             karma.field[3].set_G_para(200);
 
