@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>12WbE96110-49442.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="HelixToolkit">
       <HintPath>..\packages\HelixToolkit.2015.1.715\lib\portable-net4+sl4+wp71+win8\HelixToolkit.dll</HintPath>
@@ -113,6 +116,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="12WbE96110-49442.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Karma.txt" />
+    <Resource Include="Orbit.txt" />
+    <Resource Include="Spring.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,7 @@
+5	1
+False	False	200	-70	0	0
+False	False	200	70	0	0
+False	False	200	0	70	0
+False	False	200	0	-70	0
+False	True	0.012	0	0	-1
+2	500	500	2	0	0	50	0	0	1

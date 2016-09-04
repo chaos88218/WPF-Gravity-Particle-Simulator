@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Threading;
+using System.IO;
+using Microsoft.Win32;
 
 using HelixToolkit.Wpf;
 using PSControl;
@@ -47,7 +49,7 @@ namespace WPF_ParticleSimulator
         Source_info[] s_i;
         Field_info[] f_i;
         Particles__info[][] p_i;
-        
+
         public MainWindow()
         {
             this.s_num = 0;
@@ -57,7 +59,7 @@ namespace WPF_ParticleSimulator
 
             //Drawings
             set_scene_child();
-            
+
         }
 
         //****//
@@ -76,7 +78,7 @@ namespace WPF_ParticleSimulator
                 nlabel.Content = String.Format("Source {0}", h);
                 this.particles_info_stack.Items.Add(nlabel);
                 this.p_i[h] = new Particles__info[karma.sources[h].get_particle_nums()];
-                for (int i = 0; i < karma.sources[h].get_particle_nums(); i+=2)
+                for (int i = 0; i < karma.sources[h].get_particle_nums(); i += 2)
                 {
                     if (this.karma.sources[h].particles[i].get_launched())
                     {
@@ -90,8 +92,9 @@ namespace WPF_ParticleSimulator
             }
         }
 
-        public void set_info_stack_s() {
-            
+        public void set_info_stack_s()
+        {
+
             this.source_info_stack.Items.Clear();
             this.s_i = new Source_info[this.s_num];
             for (int h = 0; h < s_num; h++)
@@ -185,7 +188,7 @@ namespace WPF_ParticleSimulator
             if (!timer_up)
             {
                 timer = new DispatcherTimer(DispatcherPriority.Render);
-                int temp  = (int)(1.0/d_timer);
+                int temp = (int)(1.0 / d_timer);
                 timer.Interval = new TimeSpan(0, 0, 0, 0, temp);
                 timer.Tick += new EventHandler(timer_tick);
                 timer.Start();
@@ -264,7 +267,6 @@ namespace WPF_ParticleSimulator
             if (this.f_num != 0)
             {
                 float[] s_posi;
-                float[] s_velo;
 
                 FieldDLG fld_dlg = new FieldDLG(this.f_num);
                 fld_dlg.Owner = this;
@@ -273,7 +275,6 @@ namespace WPF_ParticleSimulator
                 for (int i = 0; i < this.f_num; i++)
                 {
                     s_posi = this.karma.field[i].getObjectPosition();
-                    s_velo = this.karma.field[i].getObjectVelocity();
 
                     fld_dlg_cells[i] = new FieldDLG_cell(i
                         , this.karma.field[i].get_push_or_not()
@@ -489,6 +490,129 @@ namespace WPF_ParticleSimulator
             set_scene_child();
             set_scene = false;
             set_show = true;
+        }
+
+        //****//
+        //Files
+        //****//
+        private void save_burron_Click(object sender, RoutedEventArgs e)
+        {
+            if (set_show)
+            {
+                string str;
+                str = String.Format("{0}\t{1}\n", this.f_num, this.s_num);
+
+                for (int i = 0; i < this.f_num; i++)
+                {
+                    float[] s_posi = this.karma.field[i].getObjectPosition();
+                    str += String.Format("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\n"
+                        , this.karma.field[i].get_push_or_not()
+                        , this.karma.field[i].get_infi_or_not()
+                        , this.karma.field[i].get_G_para()
+                            , s_posi[0], s_posi[1], s_posi[2]);
+                }
+
+                for (int i = 0; i < this.s_num; i++)
+                {
+                    float[] s_posi = this.karma.sources[i].getObjectPosition();
+                    float[] s_velo = this.karma.sources[i].get_lauching_Velocity();
+                    float velo_scale = this.karma.sources[i].get_velo_scale();
+
+                    str += String.Format("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\n"
+                        , this.karma.sources[i].get_type()
+                        , this.karma.sources[i].get_particle_nums()
+                        , this.karma.sources[i].get_particle_life() 
+                        , this.karma.sources[i].get_velo_scale()
+                            ,s_posi[0] ,s_posi[1] ,s_posi[2]
+                            ,s_velo[0]/velo_scale ,s_velo[1]/velo_scale ,s_velo[2]/velo_scale);
+                }
+
+                SaveFileDialog save_dlg = new SaveFileDialog();
+                save_dlg.Filter = "Text file (*.txt)|*.txt";
+                save_dlg.InitialDirectory = Environment.CurrentDirectory;
+
+                if (save_dlg.ShowDialog() == true)
+                {
+                    File.WriteAllText(save_dlg.FileName, str);
+                    MessageBox.Show("File saved", "File", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No Scene", "Save", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void load_button_Click(object sender, RoutedEventArgs e)
+        {
+            string file_path;
+            OpenFileDialog load_dlg = new OpenFileDialog();
+            load_dlg.Filter = "Text file (*.txt)|*.txt";
+            load_dlg.InitialDirectory = Environment.CurrentDirectory;
+
+            if (load_dlg.ShowDialog() == true)
+            {
+                file_path = load_dlg.FileName;
+            }
+            else {
+                return;
+            }
+
+            try
+            {
+                string[] separators = { "\t", "\n"};
+                string in_text = File.ReadAllText(file_path);
+                string[] all_text = in_text.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+
+                int read_num = 2;
+                this.f_num = Int32.Parse(all_text[0]);
+                this.s_num = Int32.Parse(all_text[1]);
+
+                karma = new Gravity_Caculator(s_num, f_num);
+                myHelixViewport3D.Children.Clear();
+                set_scene = true;
+
+                for (int i = 0; i < this.f_num; i++)
+                {
+                    karma.field[i].set_push_or_not(Boolean.Parse(all_text[read_num++]));
+                    karma.field[i].set_Infi_or_not(Boolean.Parse(all_text[read_num++]));
+                    karma.field[i].set_G_para(float.Parse(all_text[read_num++]));
+                    karma.field[i].setObjectPosition(new float[] {
+                        float.Parse(all_text[read_num++])
+                        , float.Parse(all_text[read_num++])
+                        , float.Parse(all_text[read_num++]) });
+                }
+                set_source = true;
+                set_info_stack_f();
+                
+                for (int i = 0; i < this.s_num; i++)
+                {
+                    karma.sources[i].set_Source_type(Int32.Parse(all_text[read_num++]));
+                    karma.sources[i].set_particle_numbers(Int32.Parse(all_text[read_num++]));
+                    karma.sources[i].set_particles_life(Int32.Parse(all_text[read_num++]));
+                    karma.sources[i].set_Velo_scale(float.Parse(all_text[read_num++]));
+                    karma.sources[i].setObjectPosition(new float[] { 
+                        float.Parse(all_text[read_num++]),
+                        float.Parse(all_text[read_num++]),
+                        float.Parse(all_text[read_num++])});
+                    karma.sources[i].set_Velo_vec(new float[] { 
+                        float.Parse(all_text[read_num++]),
+                        float.Parse(all_text[read_num++]),
+                        float.Parse(all_text[read_num++])});
+                }
+                set_fields = true;
+                set_info_stack_s();
+
+                set_scene_child();
+                set_scene = false;
+                set_show = true;
+
+                MessageBox.Show("File Loaded", "Loaded", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (InvalidCastException error)
+            {
+                MessageBox.Show(error.ToString(), "Read", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
 

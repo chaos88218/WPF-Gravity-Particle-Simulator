@@ -70,6 +70,20 @@
                     <Label Grid.Row="1" Padding="0" HorizontalAlignment="Center" Content="Examples"/>
                 </Grid>
                 <Rectangle VerticalAlignment="Stretch" Width="1" Margin="1,5" Stroke="#FFC6C6C6" />
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="15" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Save" Click ="save_burron_Click"  x:Name="save_burron" Width="48" Background ="White"/>
+                        <Button Content="Load" Click ="load_button_Click"  x:Name="load_button" Width="48" Background="White"/>
+                    </StackPanel>
+                    <Label Grid.Row="1" Padding="0" HorizontalAlignment="Center" Content="File"/>
+                </Grid>
+                <Rectangle VerticalAlignment="Stretch" Width="1" Margin="1,5" Stroke="#FFC6C6C6" />
+                
             </StackPanel>
         </Border>
 
