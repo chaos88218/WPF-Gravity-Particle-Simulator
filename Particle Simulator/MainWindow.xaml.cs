@@ -32,7 +32,7 @@ namespace WPF_ParticleSimulator
         DispatcherTimer timer;
         public static float d_timer = 0.02f;
         bool timer_up = false;
-        int sec = 0;
+        long last_time = 0;
 
         //numbers
         int s_num = 2;
@@ -157,9 +157,9 @@ namespace WPF_ParticleSimulator
         private void timer_tick(object sender, EventArgs e)
         {
             karma.NextFrame();
-            sec++;
-            sec = sec % int.MaxValue;
-            Status_bar.Text = String.Format("Time : {0}", sec);
+            long ab = DateTime.Now.Ticks/10000;
+            Status_bar.Text = String.Format("FPS : {0:F2}", 1000.0/(ab - last_time));
+            last_time = ab;
         }
 
         //****//
@@ -212,7 +212,6 @@ namespace WPF_ParticleSimulator
                 return;
             }
 
-            sec = 0;
             float[] zero = new float[] { 0, 0, 0 };
             for (int i = 0; i < s_num; i++)
             {

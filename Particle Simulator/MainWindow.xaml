@@ -134,9 +134,7 @@
         </Border>
 
         <!--Progress Bar-->
-        <Border BorderBrush="Black" Background="#FF007ACC" BorderThickness="1" Grid.Row="2" Grid.Column="0">
-            <ProgressBar/>
-        </Border>
+        <Border BorderBrush="Black" Background="#FF007ACC" BorderThickness="1" Grid.Row="2" Grid.Column="0"/>
 
     </Grid>
 
