@@ -3,13 +3,13 @@
 ### Synopsis
 The [prototype](https://github.com/chaos88218/Particle-Simulator-Example) of this project was an Object Oriented
 Programming course final project.	Although the code structure of the prototype was functional	and well developed,
-the concept of Object Oriented was notfully achieved. The UI of the prototype is also	terrible and unfriendly.
+the concept of Object Oriented was not fully achieved. The UI of the prototype is also	terrible and unfriendly.
 This project try to fix all the problems above and create a functional basic gravity simulation.
 
 ### Motivation
 Found free Gravity Simulator online was either lack of 
 	particle controll interface or only 2D simulation. However, 
-	the information of 3D gravity simulation for gravity is far 
+	the information of 3D gravity simulation is far 
 	more complicated than 2D. So this project is aiming to develope
 	a 3D Gravity Simulator which is functional, accurate and user friendly.
 
