@@ -19,7 +19,11 @@ see at [Youtube](https://www.youtube.com/watch?v=lSiKw6jqFmo)
 ### Reference
 - using WPF
 - using [Helix-toolkit](https://github.com/helix-toolkit)
-	
+
+### Problem
+- WPF is not rendering efficient. FPS also number of particles are lower then prototype.
+- No collidtion dectection.
+- Can't manipulate nor observe certain particles.
 
 ### Contact and Info
   - Bug Report chaos88218@gmail.com
